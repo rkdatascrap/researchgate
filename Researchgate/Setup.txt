@@ -1,0 +1,24 @@
+
+Setup
+*-------------------------------------*
+1) Install Python 3.1X
+2) Once installed verify installation by visint CMD, type command "python -V"
+	Eg: C:\Users\Biju>python -V
+	    Python 3.11.4
+3) Install python packages by following below commands
+
+   a) In CMD go to location where python is installed and go to Scripts folder
+	eg: cd C:/User/python/python311/Scripts
+
+   b) Once you are in scripts folder run below commands one by one
+	pip install pandas
+	pip install beautifulsoup4
+	pip install playwright
+	pip install tkinter
+
+4) In CMD cd to the location where the tool is location and run the python using below command
+	cd c:/User/ResearchGate
+	python profile_extracter.py
+	python searchpage_extracter.py
+
+*--------------------------------------*

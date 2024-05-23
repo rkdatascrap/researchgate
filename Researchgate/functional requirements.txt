@@ -1,0 +1,55 @@
+Researchgate Profile and search page web scrapper
+
+High level requirements: 
+1) Web scrap profile page of a research gate user to fetch basic information and their publication
+
+2) Web scrap search page of research gate and get list of publication available for any given search key word.
+
+3) Columns to be scrapped from the publication page of profile extractor are:
+ProfileName
+OrgName
+Title
+PublicationType
+AuthorName
+AuthorOrder
+DatePublished
+Journal
+JournalCitations
+Abstract
+URL
+
+3) Columns to be scrapped from the publication page of search page extractor are:
+Title
+PublicationType
+AuthorName
+AuthorOrder
+DatePublished
+Journal
+JournalCitations
+Abstract
+URL
+
+4) Collect user input for point 1 and 2 using a simple desktop app UI.
+
+5) Inputs collected from Users for research gate profile page web scrapping:
+	a) Valid URL who is a user with research gate profile page starting with https://www.researchgate.net/profile/<profile_name>
+	b) URL can be one or multiple urls with comma separated values.
+	c) Date rage to pick from the current date to any backdated year.
+
+6) Inputs collected from Users for research gate search page web scrapping:
+	a) Any word(s) to search for publications in research gate.
+	b) Word(s) can be of one or multiple values with comma separated values.
+	b) Date rage to pick from the current date to any backdated year.
+
+6) Click Submit to run the automation script.
+
+7) In case of incorrect input you will get a pop up message with the error.
+
+8) Once the automation is completed you will get a pop up with success message.
+
+9) To get the output excel sheet check for the output folder created with the timestamp of output generation.
+
+10) Users are advised to not interrupt the automation UI or running session which can tamper the automation tool.
+
+11) All functions for reading the page and web scrapping are totally decoupled to easily accommodate website upgrades and changes.
+
