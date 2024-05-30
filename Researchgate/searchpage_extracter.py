@@ -32,7 +32,7 @@ def submit_action():
                 searchUrl=f"https://www.researchgate.net/search/publication?q={url}&page={i}"
                 #Start reading the page
                 soup=rd(searchUrl)
-                #start scrapping
+                #start scrapping.
                 soup = BeautifulSoup(soup, 'html.parser')
                 new_df=pd.DataFrame(ssc(soup,noOfYears,url))
                 #writer=pd.ExcelWriter(filename, engine='openpyxl',mode='a',if_sheet_exists="overlay")
