@@ -3,6 +3,7 @@ import pandas as pd
 import logging
 from functions.readpage import fun as rd
 from functions.scrapper import scrapper as sc
+from functions.scrapper import contributor_scrapper as contri_sc
 import tkinter as tk
 from tkinter import messagebox
 import datetime
@@ -14,6 +15,7 @@ logging.info("Start of the automation")
 
 def submit_action():
     #Get user input from the UI
+    drop=dropdown.get()
     urls = entry1.get()
     url_list = urls.split(',')
     final_df = pd.DataFrame()
@@ -31,7 +33,17 @@ def submit_action():
             soup = BeautifulSoup(soup, 'html.parser')
             #creating output xls file
             new_df = pd.DataFrame(sc(soup,noOfYears))
-            final_df = pd.concat([final_df, new_df], ignore_index=True)    
+            final_df = pd.concat([final_df, new_df], ignore_index=True)   
+        if url.startswith("https://") and drop =="No" and "contributions" in url:
+            logging.info("Input verified as Contributor URL")
+            noOfYears = year_var.get()
+            #Start reading the page
+            soup=rd(url)
+            #start scrapping
+            soup = BeautifulSoup(soup, 'html.parser')
+            #creating output xls file
+            new_df = pd.DataFrame(contri_sc(soup,noOfYears))
+            final_df = pd.concat([final_df, new_df], ignore_index=True) 
         else:
             logging.info("Input verification shows its not a proper URL")
             messagebox.showinfo("Failure", "Please provide correct URL")
@@ -43,7 +55,7 @@ def submit_action():
 root = tk.Tk()
 root.title("Researchgate Profile Data extractor")
 #window size
-root.geometry("400x150")
+root.geometry("400x200")
 
 # first input label
 label1 = tk.Label(root, text="Enter the Profile URL: ")
@@ -63,9 +75,18 @@ year_var.set(years[10])  # defaulted value to 10 year data
 year_menu = tk.OptionMenu(root, year_var, *years)
 year_menu.grid(row=1, column=1, padx=5, pady=5)
 
+#Third input label
+label3 = tk.Label(root, text="Is this a profile?(contains profile in URL)")
+label3.grid(row=2, column=0, padx=5, pady=5)
+dropdown = tk.StringVar(root)
+dropdown.set("Yes")  # defaulted value to 10 year data
+options = ["Yes","No"]
+dropdown_menu = tk.OptionMenu(root, dropdown, *options)
+dropdown_menu.grid(row=2, column=1, padx=5, pady=5)
+
 # Create and place the submit button
 submit_button = tk.Button(root, text="Submit", command=submit_action)
-submit_button.grid(row=2, columnspan=2, pady=20)
+submit_button.grid(row=3, columnspan=2, pady=20)
 
 
 # Run the Tkinter event loop
