@@ -23,7 +23,7 @@ def submit_action():
     first_df=pd.DataFrame(columns)
     final_df = pd.concat([final_df, first_df], ignore_index=True)
     for url in url_list:
-        print(url)
+        url=str(url.strip())
         if url.startswith("https://") and "profile" in url:
             logging.info("Input verified as Profile URL")
             noOfYears = year_var.get()
@@ -34,7 +34,7 @@ def submit_action():
             #creating output xls file
             new_df = pd.DataFrame(sc(soup,noOfYears))
             final_df = pd.concat([final_df, new_df], ignore_index=True)   
-        if url.startswith("https://") and drop =="No" and "contributions" in url:
+        elif url.startswith("https://") and drop=="No" and "contributions" in url:
             logging.info("Input verified as Contributor URL")
             noOfYears = year_var.get()
             #Start reading the page
