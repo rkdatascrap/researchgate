@@ -248,7 +248,6 @@ def contributor_scrapper(soup,noOfYears):
                         shotput.append(abstract)
                         shotput.append(href)
                         output.append(shotput)
-            print("iteration done")
         return output
     else:
         logging.info("Error: Could not find Publisher Href")
